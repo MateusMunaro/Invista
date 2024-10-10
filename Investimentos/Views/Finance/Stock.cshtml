@@ -1,0 +1,45 @@
+﻿@model List<Investimentos.Models.WeeklyStockData>
+
+@{
+    ViewBag.Title = "Bolsa de Valores";
+}
+
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+<div class="jumbotron">
+    @if (Model != null && Model.Count > 0)
+    {
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Símbolo</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Abertura</th>
+                    <th scope="col">Último</th>
+                    <th scope="col">Mínimo</th>
+                    <th scope="col">Máximo</th>
+                    <th scope="col">Volume</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var stock in Model)
+                {
+                    <tr>
+                        <td>@stock.Symbol</td>
+                        <td>@stock.Date.ToString("dd/MM/yyyy")</td>
+                        <td>@stock.Open.ToString("F2")</td>
+                        <td>@stock.Close.ToString("F2")</td>
+                        <td>@stock.Low.ToString("F2")</td>
+                        <td>@stock.High.ToString("F2")</td>
+                        <td>@stock.Volume.ToString("N0")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Não há dados disponíveis no momento.</p>
+    }
+</div>
